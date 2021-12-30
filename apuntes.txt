@@ -1,0 +1,57 @@
+CREAR PROYECTO DE ANGULAR CON NG NEW nombre-app
+
+AÑADIR LAS RUTAS CON: ng generate module app-routing --flat --module=app
+
+CREAMOS LA CARPETA COMPONENTES Y CREAMOS NUESTROS COMPONENTES CON:ng g c <nombre del componente>
+	-COMPONENTES
+		-GASTOS
+			-INGRESAR-GASTO
+			-LISTAR-GASTO
+		-INGRESAR-PRESUPUESTO
+CONFIGURAMOS LAS RUTAS:
+	en app.module.ts importo RouterModule y Routes:import { RouterModule, Routes } from '@angular/router';
+
+	creo mi objeto con mis path's:
+	 const appRoutes: Routes=[
+  		  {path:'', redirectTo:'/ingresarPresupuesto', pathMatch:'full'},
+    		{path:'gastos',component:GastosComponent},
+    		{path:'ingresarPresupuesto', component:IngresarPresupuestoComponent},
+    		{path:'**', redirectTo:'/ingresarPresupuesto', pathMatch:'full'}
+  		]
+
+	en la parte de imports agrego:
+	 RouterModule.forRoot(
+      	appRoutes,
+      	{enableTracing:true}
+    	),
+
+	en mi componente app, agrego la etiqueta <router-outlet></router-outlet>
+
+CREAMOS EL SERVICIO CON ng g s services/presupuesto
+
+*ngIf="cantidadIncorrecta" <-- PARA MOSTRAR UN ELEMENTO SI TAL VARIABLE ES TRUE
+
+[(ngModel)] <-- PARA ENLAZAR EL VALOR DE UN INPUT CON UNA VARIABLE DE TS
+
+(click)="agregar() <-- PARA QUE AL MOMENTO DE DAR CLIC A UN BOTON HAGA DETERMINADA FUNCION
+
+En el servicio creamos dos variables: presupuesto(number) y restante(number) y las inicializamos.
+
+A TRAVES DE LA INYECCION DE DEPENDENCIAS INYECTAMOS EL SERVICIO
+	en el constructor de ingresar-presupuesto.component.ts ponemos:
+	
+	constructor(private _presupuestoService: PresupuestoService,  private router:Router) { 
+    	this.cantidad=0;
+    	this.cantidadIncorrecta=false;
+  	}
+
+cuando el demos clic en agregar()
+	ponemos que el servicio obtenga el valor de la variable cantidad(input del form)
+	_presupuestoService.presupuesto=this.cantidad;
+
+hacemos en la funcion agregar que nos redireccione a el componente de gastos
+	this.router.navigate(['/gastos']);
+	
+
+LOS SERVICIOS SIRVEN PARA CREAR VARIABLES Y DESPUES CON INYECCION DE DEPENDENCIA INYECTAMOS ESAS VARIABLES PARA PASAR 
+VALORES DE UN COMPONENTE A OTRO, SIRVE IGUAL PARA LOS METODOS.
