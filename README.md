@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
+#¿QUE HACE ESTA APP?
+Puedes poner un presupuesto inicial y despues te andara a una pagina donde podras agregar gastos e ir viendo cuanto dinero te va quedando, para asi poder planear presupuestos sencillos, desarrollado con Angular y desplegada en Firebase. desarrollado por Francisco Javier Carranza Esquivel (Torreon, Coahuila, Mexico).
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
